@@ -47,6 +47,8 @@
     .grid.show-results{grid-template-columns:1fr !important;}
     .grid.show-results .card:first-child{display:none !important;}
     .back-btn{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:8px;cursor:pointer}
+    /* highlighted stat style for macros */
+    .stat{display:inline-block;padding:6px 10px;border-radius:8px;background:linear-gradient(90deg,var(--accent),#60a5fa);color:#042027;font-weight:800;margin-left:8px} 
 
     /* MOBILE RESPONSIVE RULES */
     @media (max-width:920px){
@@ -175,13 +177,26 @@
       </div>
 
       <div class="card" id="resultCard">
-        <div style="display:flex; justify-content:space-between; width:100%; align-items:center">
-          <div class="visual" style="flex:1">
-            <div class="avatar" id="avatar">
-              <div style="text-align:center">
-                <div style="font-weight:700;font-size:18px" id="summaryTitle">Your plan preview</div>
-                <div class="muted small" id="summarySub">Enter your numbers and press Generate Plan</div>
-              </div>
+        <div style="display:flex; flex-direction:column; width:100%"> 
+          <div class="visual" style="flex:1"> 
+            <div class="avatar" id="avatar"> 
+              <div style="text-align:center"> 
+                <div style="font-weight:700;font-size:18px" id="summaryTitle">Your plan preview</div> 
+                <div class="muted small" id="summarySub">Enter your numbers and press Generate Plan</div> 
+              </div> 
+            </div> 
+
+            <div id="results" style="width:100%;"></div> 
+
+            <footer> 
+              <div class="muted small">Made for quick planning — use responsible deficits (≤1000 kcal/day) and aim for steady fat loss.</div> 
+            </footer> 
+          </div>
+          <div style="margin-top:12px; text-align:center"> 
+            <button class="back-btn" id="backBtn" title="Edit inputs">← Back to edit</button> 
+          </div>
+        </div>
+      </div> 
             </div>
 
             <div id="results" style="width:100%;"></div>
@@ -319,10 +334,10 @@
           <div class="small list">• <strong>Fat mass</strong>: total kilograms of stored fat. Target changes are computed assuming fat loss/gain with preserved lean mass.</div>
 
           <div class="section-title">Practical nutrition targets</div>
-          <div class="small list">• <strong>Protein:</strong> ${macros.proteinG} g/day (~${macros.proteinPerKg} g/kg). Higher protein preserves muscle during deficits and helps recovery.</div>
-          <div class="small list">• <strong>Fat:</strong> ~${fatG} g/day (~${fatPercent}% of calories). Essential for hormones and satiety.</div>
-          <div class="small list">• <strong>Carbs:</strong> ~${carbsG} g/day (remaining calories). Carbs fuel training and recovery.</div>
-          <div class="small list">• <strong>Fiber:</strong> aim for ≈${fiberG} g/day. Supports digestion and satiety.</div>
+          <div class="small list">• <strong>Protein:</strong> <span class="stat">${macros.proteinG} g/day</span> (~${macros.proteinPerKg} g/kg). Higher protein preserves muscle during deficits and helps recovery.</div>
+          <div class="small list">• <strong>Fat:</strong> <span class="stat">~${fatG} g/day</span> (~${fatPercent}% of calories). Essential for hormones and satiety.</div>
+          <div class="small list">• <strong>Carbs:</strong> <span class="stat">~${carbsG} g/day</span> (remaining calories). Carbs fuel training and recovery.</div>
+          <div class="small list">• <strong>Fiber:</strong> <span class="stat">≈${fiberG} g/day</span>. Supports digestion and satiety.<
 
           <div class="section-title">Training recommendations (based on bodyfat)</div>
           <div class="small list"><strong>${advice.heading}</strong></div>
